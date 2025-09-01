@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontro de Pastores e Líderes da Infância e Adolescência</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-church"></i>
+                    <span>Encontro de Pastores</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#form">Inscrição</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Encontro de Pastores e Líderes da 
+                    <span class="highlight">Infância e Adolescência</span>
+                </h1>
+                <p class="hero-description">
+                    Uma oportunidade única para conectar, aprender e fortalecer o ministério 
+                    com crianças e adolescentes em nossa comunidade.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#form" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Inscrever-se
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        Saiba Mais
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-graphic">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre o Encontro</h2>
+                <p>Conectando líderes para fortalecer o ministério com crianças e adolescentes</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3>Comunhão Espiritual</h3>
+                    <p>Momento de oração e compartilhamento de experiências entre pastores e líderes.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Formação Continuada</h3>
+                    <p>Palestras e workshops para aprimorar o ministério com crianças e adolescentes.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Networking</h3>
+                    <p>Oportunidade de criar parcerias e trocar experiências com outros líderes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form" class="form-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Inscrição</h2>
+                <p>Preencha o formulário abaixo para participar do encontro</p>
+            </div>
+            <div class="form-container">
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="form-hint">Email válido</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Nome completo *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefone (WhatsApp) *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="church">Igreja de procedência *</label>
+                        <input type="text" id="church" name="church" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="function">Função: Pastor / Secretário Presbiterial / Líder *</label>
+                        <select id="function" name="function" required>
+                            <option value="">Selecione sua função</option>
+                            <option value="pastor">Pastor</option>
+                            <option value="secretario">Secretário Presbiterial</option>
+                            <option value="lider">Líder</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Inscrição
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contato</h2>
+                <p>Entre em contato conosco para mais informações</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contato@encontropastores.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Local</h4>
+                            <p>São Paulo, SP - Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-social">
+                    <h3>Siga-nos</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-church"></i>
+                    <span>Encontro de Pastores</span>
+                </div>
+                <p>&copy; 2024 Encontro de Pastores e Líderes. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h3>Inscrição Enviada!</h3>
+            </div>
+            <p>Sua inscrição foi registrada com sucesso. Entraremos em contato em breve com mais informações.</p>
+            <button class="btn btn-primary" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
