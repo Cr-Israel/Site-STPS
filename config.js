@@ -34,7 +34,7 @@ const ENVIRONMENT = {
         DEBUG: true
     },
     PRODUCTION: {
-        API_URL: 'https://your-production-api.com',
+        API_URL: 'https://site-stps-back.onrender.com',
         DEBUG: false
     }
 };
