@@ -92,6 +92,67 @@ Para fazer o deploy do site:
 3. **Vercel**: Conecte o repositório GitHub ao Vercel
 4. **Servidor Local**: Use um servidor local como Live Server (VS Code)
 
+## 🔌 API Integration
+
+O formulário agora está configurado para se conectar a uma API real. Para configurar:
+
+### Backend Setup (Node.js/Express)
+
+1. **Instalar dependências**:
+   ```bash
+   npm install
+   ```
+
+2. **Iniciar servidor**:
+   ```bash
+   npm start
+   # ou para desenvolvimento
+   npm run dev
+   ```
+
+3. **Configurar API URL**:
+   - Edite `config.js` e atualize a URL da API
+   - Para desenvolvimento: `http://localhost:3000`
+   - Para produção: sua URL de produção
+
+### Configuração da API
+
+O backend inclui:
+- ✅ Validação de dados
+- ✅ Verificação de email duplicado
+- ✅ Respostas de erro apropriadas
+- ✅ CORS habilitado
+- ✅ Endpoint de health check
+
+### Endpoints Disponíveis
+
+- `POST /api/register` - Registrar participante
+- `GET /api/registrations` - Listar inscrições (admin)
+- `GET /api/health` - Verificar status da API
+
+### Exemplo de Resposta da API
+
+```json
+{
+  "success": true,
+  "message": "Inscrição realizada com sucesso!",
+  "data": {
+    "id": "1234567890",
+    "email": "pastor@igreja.com",
+    "fullName": "João Silva"
+  }
+}
+```
+
+### Tratamento de Erros
+
+O frontend trata automaticamente:
+- ✅ Timeout de conexão
+- ✅ Erros de validação (400)
+- ✅ Email duplicado (409)
+- ✅ Erros de servidor (500)
+- ✅ Problemas de conexão
+
 ## 🔮 Próximas Melhorias
 
 - [ ] Integração com backend para processamento real do formulário

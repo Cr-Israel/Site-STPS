@@ -113,27 +113,31 @@
                     
                     <div class="form-group">
                         <label for="fullName">Nome completo *</label>
-                        <input type="text" id="fullName" name="fullName" required>
+                        <input type="text" id="fullName" name="fullName" required minlength="5">
+                        <span class="form-hint">Nome completo (mínimo 5 caracteres)</span>
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">Telefone (WhatsApp) *</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" required minlength="10">
+                        <span class="form-hint">Telefone com DDD (mínimo 10 caracteres)</span>
                     </div>
                     
                     <div class="form-group">
                         <label for="church">Igreja de procedência *</label>
-                        <input type="text" id="church" name="church" required>
+                        <input type="text" id="church" name="church" required minlength="5">
+                        <span class="form-hint">Nome da igreja (mínimo 5 caracteres)</span>
                     </div>
                     
                     <div class="form-group">
                         <label for="function">Função: Pastor / Secretário Presbiterial / Líder *</label>
                         <select id="function" name="function" required>
                             <option value="">Selecione sua função</option>
-                            <option value="pastor">Pastor</option>
-                            <option value="secretario">Secretário Presbiterial</option>
-                            <option value="lider">Líder</option>
+                            <option value="Pastor">Pastor</option>
+                            <option value="Secretário Presbiterial">Secretário Presbiterial</option>
+                            <option value="Líder">Líder</option>
                         </select>
+                        <span class="form-hint">Selecione sua função na igreja</span>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-full">
@@ -222,6 +226,7 @@
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Name validation
-        if (data.fullName.trim().length < 3) {
-            errors.push('Nome deve ter pelo menos 3 caracteres');
+        if (data.fullName.trim().length < 5) {
+            errors.push('Nome precisa ter pelo menos 5 caracteres');
             isValid = false;
         }
         
@@ -40,19 +40,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
         const cleanPhone = data.phone.replace(/\D/g, '');
         if (cleanPhone.length < 10) {
-            errors.push('Telefone inválido');
+            errors.push('Telefone precisa ter pelo menos 10 caracteres');
             isValid = false;
         }
         
         // Church validation
-        if (data.church.trim().length < 2) {
-            errors.push('Nome da igreja deve ter pelo menos 2 caracteres');
+        if (data.church.trim().length < 5) {
+            errors.push('Igreja precisa ter pelo menos 5 caracteres');
             isValid = false;
         }
         
         // Function validation
-        if (!data.function) {
-            errors.push('Selecione sua função');
+        if (!data.function || data.function.length < 5) {
+            errors.push('Função precisa ter pelo menos 5 caracteres');
             isValid = false;
         }
         
@@ -107,15 +107,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Submit form
-    function submitForm(data) {
+    async function submitForm(data) {
         // Show loading state
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
         submitBtn.disabled = true;
         
-        // Simulate API call
-        setTimeout(() => {
+        try {
+            // API endpoint - replace with your actual API URL
+            const apiUrl = `${API_BASE_URL}${API_CONFIG.ENDPOINTS.REGISTER}`;
+            
+            // Prepare data for API
+            const apiData = {
+                name: data.fullName,
+                email: data.email,
+                phone: data.phone,
+                church: data.church,
+                function: data.function,
+            };
+            
+            // Make API call with timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: API_CONFIG.HEADERS,
+                body: JSON.stringify(apiData),
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
@@ -131,7 +161,75 @@ document.addEventListener('DOMContentLoaded', function() {
             if (errorContainer) {
                 errorContainer.remove();
             }
-        }, 2000);
+            
+            // Log success (optional)
+            console.log('Form submitted successfully:', result);
+            
+        } catch (error) {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Handle different types of errors
+            let errorMessage = 'Erro desconhecido';
+            
+            if (error.name === 'AbortError') {
+                errorMessage = 'Tempo limite excedido. Verifique sua conexão e tente novamente.';
+            } else if (error.message.includes('HTTP error! status:')) {
+                const status = error.message.split('status: ')[1];
+                if (status === '400') {
+                    errorMessage = 'Dados inválidos. Verifique as informações e tente novamente.';
+                } else if (status === '409') {
+                    errorMessage = 'Este email já está registrado.';
+                } else if (status === '500') {
+                    errorMessage = 'Erro interno do servidor. Tente novamente em alguns minutos.';
+                } else {
+                    errorMessage = `Erro do servidor (${status}). Tente novamente.`;
+                }
+            } else if (error.message.includes('Failed to fetch')) {
+                errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente.';
+            }
+            
+            // Show error message
+            showApiError(errorMessage);
+            
+            console.error('Error submitting form:', error);
+        }
+    }
+    
+    // Show API error
+    function showApiError(errorMessage) {
+        // Remove existing error messages
+        const existingErrors = document.querySelectorAll('.error-container');
+        existingErrors.forEach(error => error.remove());
+        
+        // Create error container
+        const errorContainer = document.createElement('div');
+        errorContainer.className = 'error-container';
+        errorContainer.style.cssText = `
+            background: #FEE2E2;
+            border: 1px solid #FCA5A5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            color: #DC2626;
+        `;
+        
+        const errorTitle = document.createElement('h4');
+        errorTitle.textContent = 'Erro ao enviar inscrição';
+        errorTitle.style.marginBottom = '8px';
+        errorContainer.appendChild(errorTitle);
+        
+        const errorText = document.createElement('p');
+        errorText.textContent = 'Ocorreu um erro ao processar sua inscrição. Por favor, tente novamente em alguns minutos ou entre em contato conosco.';
+        errorText.style.margin = '0';
+        errorContainer.appendChild(errorText);
+        
+        // Insert error container before form
+        form.parentNode.insertBefore(errorContainer, form);
+        
+        // Scroll to errors
+        errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
     // Show success modal
