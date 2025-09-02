@@ -1,7 +1,8 @@
 // API Configuration
 const API_CONFIG = {
     // Replace with your actual API endpoint
-    BASE_URL: 'https://localhost:3333',
+    // BASE_URL: 'https://localhost:3333',
+    BASE_URL: 'https://site-stps-back.onrender.com',
     
     // API endpoints
     ENDPOINTS: {
