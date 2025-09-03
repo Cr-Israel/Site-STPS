@@ -1,3 +1,19 @@
+// Toggle other function field
+function toggleOtherFunction() {
+    const functionSelect = document.getElementById('function');
+    const otherFunctionGroup = document.getElementById('otherFunctionGroup');
+    const otherFunctionInput = document.getElementById('otherFunction');
+    
+    if (functionSelect.value === 'Other') {
+        otherFunctionGroup.style.display = 'block';
+        otherFunctionInput.required = true;
+    } else {
+        otherFunctionGroup.style.display = 'none';
+        otherFunctionInput.required = false;
+        otherFunctionInput.value = '';
+    }
+}
+
 // Form submission handling
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registrationForm');
@@ -51,9 +67,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Function validation
-        if (!data.function || data.function.length < 5) {
-            errors.push('Função precisa ter pelo menos 5 caracteres');
+        if (!data.function) {
+            errors.push('Selecione uma função');
             isValid = false;
+        } else if (data.function === 'Other') {
+            if (!data.otherFunction || data.otherFunction.trim().length < 3) {
+                errors.push('Especifique sua função (mínimo 3 caracteres)');
+                isValid = false;
+            }
         }
         
         // Show errors if any
@@ -124,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 email: data.email,
                 phone: data.phone,
                 church: data.church,
-                function: data.function,
+                function: data.function === 'Other' ? data.otherFunction : data.function,
             };
             
             // Make API call with timeout

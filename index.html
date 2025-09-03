@@ -14,15 +14,15 @@
         <nav class="nav">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <i class="fas fa-church"></i>
-                    <span>Encontro de Pastores</span>
+                    <img src="assets/stps-logo.png" alt="STPS" onerror="this.style.display='none'">
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home">Início</a></li>
                     <li><a href="#about">Sobre</a></li>
+                    <li><a href="#speakers">Palestrantes</a></li>
                     <li><a href="#form">Inscrição</a></li>
-                    <li><a href="#sponsors">Patrocinadores</a></li>
                     <li><a href="#contact">Contato</a></li>
+                    <li><a href="#sponsors">Patrocinadores</a></li>
                 </ul>
                 <div class="nav-toggle">
                     <span></span>
@@ -77,21 +77,68 @@
                         <i class="fas fa-pray"></i>
                     </div>
                     <h3>Comunhão Espiritual</h3>
-                    <p>Momento de oração e compartilhamento de experiências entre pastores e líderes.</p>
+                    <p>Participe de um momento especial de edificação espiritual e compartilhamento de experiências entre pastores e líderes.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Formação Continuada</h3>
-                    <p>Palestras para aprimorar o ministério com crianças e adolescentes.</p>
+                    <h3>Capacitação</h3>
+                    <p>Fortaleça sua liderança: receba capacitação prática para o ministério infanto-juvenil.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3>Certificado</h3>
-                    <p>Oportunidade de criar parcerias e trocar experiências com outros líderes.</p>
+                    <h3>Certificação</h3>
+                    <p>Evento gratuito com certificado de participação garantido!.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Café da Manhã</h3>
+                    <p>Desfrute de um café da manhã especial de confraternização entre irmãos, seguido por um momento de louvor e adoração.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="speakers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Palestrantes</h2>
+                <p>Conheça os convidados que compartilharão experiências e ensinamentos.</p>
+            </div>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-photo">
+                        <img src="assets/rev-esdras.jpg" alt="Palestrante 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="speaker-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="speaker-name">Rev. Esdras Emerson</h3>
+                    <p class="speaker-role">Secretário Nacional de Adolescentes da IPB</p>
+                    <div class="speaker-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-photo">
+                        <img src="assets/rev-andre.jpg" alt="Palestrante 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="speaker-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <h3 class="speaker-name">Rev. André Moreira</h3>
+                    <p class="speaker-role">Pastor da Igreja Presbiteriana da Posse</p>
+                    <div class="speaker-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,13 +179,20 @@
                     
                     <div class="form-group">
                         <label for="function">Função: Pastor / Secretário Presbiterial / Líder *</label>
-                        <select id="function" name="function" required>
+                        <select id="function" name="function" required onchange="toggleOtherFunction()">
                             <option value="">Selecione sua função</option>
                             <option value="Pastor">Pastor</option>
                             <option value="Secretário Presbiterial">Secretário Presbiterial</option>
                             <option value="Líder">Líder</option>
+                            <option value="Other">Outro</option>
                         </select>
                         <span class="form-hint">Selecione sua função na igreja</span>
+                    </div>
+                    
+                    <div class="form-group" id="otherFunctionGroup" style="display: none;">
+                        <label for="otherFunction">Especifique sua função *</label>
+                        <input type="text" id="otherFunction" name="otherFunction" minlength="3">
+                        <span class="form-hint">Descreva sua função na igreja (mínimo 3 caracteres)</span>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-full">
@@ -203,7 +257,8 @@
     <section id="sponsors" class="sponsors">
         <div class="container">
             <div class="section-header">
-                <h2>Realização: Sínodo Leste Fluminense</h2>
+                <h1>Realização</h1>
+                <h2>Sínodo Leste Fluminense</h2>
             </div>
             <div class="sponsors-grid">
                 <div class="sponsor-card sponsor-main">
@@ -264,10 +319,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-church"></i>
-                    <span>Encontro de Pastores</span>
+                    <img src="assets/stps-logo.png" alt="STPS" onerror="this.style.display='none'">
                 </div>
-                <p>&copy; 2024 Encontro de Pastores e Líderes. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Encontro de Pastores e Líderes. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
