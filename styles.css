@@ -303,10 +303,104 @@ body {
     margin: 0 auto;
 }
 
+/* Event Information Section */
+.event-info {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.event-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.event-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.event-icon i {
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.event-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-md);
+}
+
+.event-card p {
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.event-address {
+    font-size: 0.9rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+}
+
+.event-note {
+    font-size: 0.85rem;
+    color: var(--primary-green);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.price-list {
+    text-align: left;
+    margin-top: var(--spacing-md);
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.price-label {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.price-value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.price-value.free {
+    color: var(--primary-green);
+    background: var(--light-green);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+}
+
 /* Speakers Section */
 .speakers {
 	padding: var(--spacing-3xl) 0;
-	background: var(--white);
+	background: var(--gray-50);
 }
 
 .speakers-grid {
@@ -873,6 +967,6 @@ body {
     }
     
     .section-header h2 {
-        font-size: 1.75rem;
+        font-size: 1rem;
     }
 }
