@@ -318,6 +318,11 @@ body {
 .event-card {
     text-align: center;
     padding: var(--spacing-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .event-icon {
@@ -690,6 +695,16 @@ body {
     background: var(--white);
 }
 
+/* Ensure hierarchy: in sponsors, h1 (Realização) < h2 (Sínodo Leste Fluminense) */
+#sponsors .section-header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#sponsors .section-header h2 {
+    font-size: 2rem;
+}
+
 .sponsors-grid {
     display: flex;
     justify-content: center;
@@ -946,6 +961,34 @@ body {
         height: 80px;
         padding: var(--spacing-md);
     }
+
+    /* Keep sponsors heading hierarchy on tablets */
+    #sponsors .section-header h1 {
+        font-size: 1.125rem;
+    }
+    #sponsors .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    /* Event info responsive */
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    .event-card {
+        padding: var(--spacing-md);
+    }
+    .event-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: var(--spacing-md);
+    }
+    .event-icon i {
+        font-size: 1.5rem;
+    }
+    .event-card h3 {
+        font-size: 1.25rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -968,5 +1011,28 @@ body {
     
     .section-header h2 {
         font-size: 1rem;
+    }
+
+    /* Event info stacked on small phones */
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+    .event-icon {
+        width: 56px;
+        height: 56px;
+    }
+    .event-icon i {
+        font-size: 1.25rem;
+    }
+    .event-card h3 {
+        font-size: 1.125rem;
+    }
+
+    /* Keep sponsors heading hierarchy on small phones */
+    #sponsors .section-header h1 {
+        font-size: 1rem;
+    }
+    #sponsors .section-header h2 {
+        font-size: 1.5rem;
     }
 }
