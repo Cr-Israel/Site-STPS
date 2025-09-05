@@ -1,8 +1,8 @@
 // API Configuration
 const API_CONFIG = {
     // Replace with your actual API endpoint
-    BASE_URL: 'http://localhost:3333',
-    // BASE_URL: 'https://site-stps-back.onrender.com',
+    // BASE_URL: 'http://localhost:3333',
+    BASE_URL: 'https://site-stps-back.onrender.com',
     
     // API endpoints
     ENDPOINTS: {
@@ -34,8 +34,8 @@ const ENVIRONMENT = {
         DEBUG: true
     },
     PRODUCTION: {
-        // API_URL: 'https://site-stps-back.onrender.com',
-        API_URL: 'http://localhost:3333',
+        API_URL: 'https://site-stps-back.onrender.com',
+        // API_URL: 'http://localhost:3333',
         DEBUG: false
     }
 };
