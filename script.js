@@ -161,10 +161,37 @@ document.addEventListener('DOMContentLoaded', function() {
             
             clearTimeout(timeoutId);
             
+            // Check if response is ok BEFORE processing
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                // Reset button immediately on error
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Handle specific error status codes
+                const status = response.status;
+                let errorMessage = 'Erro desconhecido';
+                
+                if (status === 400) {
+                    errorMessage = 'Dados inválidos. Verifique as informações e tente novamente.';
+                } else if (status === 409) {
+                    errorMessage = 'Este email já está registrado.';
+                } else if (status === 500) {
+                    errorMessage = 'Erro interno do servidor. Tente novamente em alguns minutos.';
+                } else if (status >= 400 && status < 500) {
+                    errorMessage = `Erro de validação (${status}). Verifique os dados e tente novamente.`;
+                } else if (status >= 500) {
+                    errorMessage = `Erro interno do servidor (${status}). Tente novamente em alguns minutos.`;
+                } else {
+                    errorMessage = `Erro do servidor (${status}). Tente novamente.`;
+                }
+                
+                // Show error message and return early
+                showApiError(errorMessage);
+                console.error('API Error:', status, response.statusText);
+                return; // Exit function without processing success
             }
             
+            // Process successful response
             const result = await response.json();
             
             // Reset button
@@ -191,24 +218,15 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             
-            // Handle different types of errors
+            // Handle network and other errors
             let errorMessage = 'Erro desconhecido';
             
             if (error.name === 'AbortError') {
                 errorMessage = 'Tempo limite excedido. Verifique sua conexão e tente novamente.';
-            } else if (error.message.includes('HTTP error! status:')) {
-                const status = error.message.split('status: ')[1];
-                if (status === '400') {
-                    errorMessage = 'Dados inválidos. Verifique as informações e tente novamente.';
-                } else if (status === '409') {
-                    errorMessage = 'Este email já está registrado.';
-                } else if (status === '500') {
-                    errorMessage = 'Erro interno do servidor. Tente novamente em alguns minutos.';
-                } else {
-                    errorMessage = `Erro do servidor (${status}). Tente novamente.`;
-                }
             } else if (error.message.includes('Failed to fetch')) {
                 errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente.';
+            } else {
+                errorMessage = 'Erro inesperado. Tente novamente em alguns minutos.';
             }
             
             // Show error message
